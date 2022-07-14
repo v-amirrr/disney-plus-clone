@@ -36,8 +36,13 @@ const Page = styled.div`
 `;
 
 const Content = styled.div`
-    max-width: 40%;
+    width: 55%;
     text-align: center;
+    margin-top: 2rem;
+
+    @media (max-width: 900px) {
+        width: 80%;
+    }
 `;
 
 const TopLogo = styled.img`
@@ -72,10 +77,14 @@ const Description = styled.div`
     user-select: text;
     line-height: 1.5;
     letter-spacing: 1.5px;
+
+    @media (max-width: 600px) {
+        font-size: .5rem;
+    }
 `;
 
 const BottomLogo = styled.img`
-    width: 100%;
+    width: 98%;
     margin-top: 1rem;
 `;
 
