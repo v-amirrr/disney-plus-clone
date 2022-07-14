@@ -2,26 +2,46 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { motion } from 'framer-motion';
+
+const pageVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5, type: 'tween', when: "beforeChildren" } },
+    exit: { opacity: 0, transition: { duration: 0.5, type: 'tween' } }
+};
+
+const contentVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: {duration: 0.5, type: 'tween', staggerChildren: 0.2 } },
+    exit: { opacity: 0, transition: { duration: 0.5, type: 'tween' } }
+};
+
+const pageItemsVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, type: 'tween' } },
+    exit: { opacity: 0, y: 10, transition: { duration: 0.5, type: 'tween' } }
+};
+
 const HomePage = () => {
     return (
         <>
-            <Page>
-                <Content>
-                    <TopLogo src="/images/cta-logo-one.svg" alt="Top Logo" />
-                    <SingUpButton>get all there</SingUpButton>
-                    <Description>
+            <Page initial='hidden' animate='visible' exit='exit' variants={pageVariants}>
+                <Content variants={contentVariants}>
+                    <TopLogo src="/images/cta-logo-one.svg" alt="Top Logo" variants={pageItemsVariants}/>
+                    <SingUpButton variants={pageItemsVariants}>get all there</SingUpButton>
+                    <Description variants={pageItemsVariants}>
                         Get Premier Access to Raya and the Last Dragon for an additional fee
                         with a Disney+ subscription. As of 03/26/21, the price of Disney+
                         and The Disney Bundle will increase by $1.
                     </Description>
-                    <BottomLogo src="/images/cta-logo-two.png" alt="Top Logo" />
+                    <BottomLogo src="/images/cta-logo-two.png" alt="Top Logo" variants={pageItemsVariants} />
                 </Content>
             </Page>
         </>
     );
 };
 
-const Page = styled.div`
+const Page = styled(motion.div)`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,7 +55,7 @@ const Page = styled.div`
     user-select: none;
 `;
 
-const Content = styled.div`
+const Content = styled(motion.div)`
     width: 55%;
     text-align: center;
     margin-top: 2rem;
@@ -45,12 +65,12 @@ const Content = styled.div`
     }
 `;
 
-const TopLogo = styled.img`
+const TopLogo = styled(motion.img)`
     width: 95%;
     margin-bottom: 1rem;
 `;
 
-const SingUpButton = styled.div`
+const SingUpButton = styled(motion.div)`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,7 +91,7 @@ const SingUpButton = styled.div`
     }
 `;
 
-const Description = styled.div`
+const Description = styled(motion.div)`
     text-align: center;
     font-size: .8rem;
     user-select: text;
@@ -83,7 +103,7 @@ const Description = styled.div`
     }
 `;
 
-const BottomLogo = styled.img`
+const BottomLogo = styled(motion.img)`
     width: 98%;
     margin-top: 1rem;
 `;

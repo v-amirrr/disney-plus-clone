@@ -2,49 +2,75 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { motion } from 'framer-motion';
+
+const navbarVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, type: 'tween', when: "beforeChildren", delayChildren: 0.5, staggerChildren: 0.2 } },
+    exit: { opacity: 0, transition: { duration: 0.5, type: 'tween' } }
+};
+
+const logoVariants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, type: 'tween' } },
+    exit: { opacity: 0, transition: { duration: 0.5, type: 'tween' } }
+};
+
+const navbarMenuVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5, type: 'tween', staggerChildren: 0.2 } },
+    exit: { opacity: 0, transition: { duration: 0.5, type: 'tween' } }
+};
+
+const navbarItemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5, type: 'tween' } },
+    exit: { opacity: 0, transition: { duration: 0.5, type: 'tween' } }
+};
+
 const Header = () => {
     return (
         <>
-            <Navbar>
-                <Logo src='/images/logo.svg' alt="Header Logo" />
-                <NavbarMenu>
-                    <NavbarMenuItem>
+            <Navbar initial='hidden' animate='visible' exit='exit' variants={navbarVariants}>
+                <Logo src='/images/logo.svg' alt="Header Logo" variants={logoVariants} />
+                <NavbarMenu variants={navbarMenuVariants}>
+                    <NavbarMenuItem variants={navbarItemVariants}>
                         <img src='/images/home-icon.svg' />
                         <p>home</p>
                     </NavbarMenuItem>
 
-                    <NavbarMenuItem>
+                    <NavbarMenuItem variants={navbarItemVariants}>
                         <img src='/images/search-icon.svg' />
                         <p>search</p>
                     </NavbarMenuItem>
 
-                    <NavbarMenuItem>
+                    <NavbarMenuItem variants={navbarItemVariants}>
                         <img src='/images/watchlist-icon.svg' />
                         <p>watchlist</p>
                     </NavbarMenuItem>
 
-                    <NavbarMenuItem>
+                    <NavbarMenuItem variants={navbarItemVariants}>
                         <img src='/images/original-icon.svg' />
                         <p>original</p>
                     </NavbarMenuItem>
 
-                    <NavbarMenuItem>
+                    <NavbarMenuItem variants={navbarItemVariants}>
                         <img src='/images/movie-icon.svg' />
                         <p>movie</p>
                     </NavbarMenuItem>
 
-                    <NavbarMenuItem>
+                    <NavbarMenuItem variants={navbarItemVariants}>
                         <img src='/images/series-icon.svg' />
                         <p>series</p>
                     </NavbarMenuItem>
                 </NavbarMenu>
-                <LoginButton>login</LoginButton>
+                <LoginButton variants={logoVariants}>login</LoginButton>
             </Navbar>
         </>
     );
 };
 
-const Navbar = styled.div`
+const Navbar = styled(motion.div)`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,7 +90,7 @@ const Navbar = styled.div`
     }
 `;
 
-const Logo = styled.img`
+const Logo = styled(motion.img)`
     max-width: 5rem;
     margin-bottom: .5rem;
 `;
@@ -82,7 +108,7 @@ const NavbarMenu = styled.div`
     }
 `;
 
-const NavbarMenuItem = styled.div`
+const NavbarMenuItem = styled(motion.div)`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,11 +145,11 @@ const NavbarMenuItem = styled.div`
     }
 `;
 
-const LoginButton = styled.div`
+const LoginButton = styled(motion.div)`
     text-transform: uppercase;
     cursor: pointer;
     background-color: #000;
-    border: solid 1px #ffffffaa;
+    border: solid 1px #ffffff44;
     letter-spacing: 1px;
     padding: .5rem .8rem;
     border-radius: 6px;
@@ -131,8 +157,7 @@ const LoginButton = styled.div`
     font-weight: 900;
 
     &:hover {
-        background-color: #fff;
-        color: #000;
+        letter-spacing: 1.5px;
         border-color: transparent;
     }
 `;
