@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 import { Link } from "react-router-dom";
 
+import useLogin from '../hooks/useLogin';
+
 import { FcGoogle } from 'react-icons/fc';
 
 import { motion } from 'framer-motion';
@@ -27,6 +29,9 @@ const formItemVariants = {
 };
 
 const Login = () => {
+
+    const { loginWithGoogle } = useLogin();
+
     return (
         <>
             <Page initial='hidden' animate='visible' exit='exit' variants={pageVariants}>
@@ -39,7 +44,7 @@ const Login = () => {
                     </FormInputs>
 
                     <FormButton variants={formItemVariants} whileTap={{ scale: 0.9 }}>login</FormButton>
-                    <FormGoogle variants={formItemVariants} whileTap={{ scale: 0.9 }}><span><FcGoogle /></span>login with google</FormGoogle>
+                    <FormGoogle variants={formItemVariants} whileTap={{ scale: 0.9 }} onClick={loginWithGoogle}><span><FcGoogle /></span>login with google</FormGoogle>
 
                     <FormText variants={formItemVariants}>
                         New To Disney+ ? <Link to="/signup" className='link'>Create An Account</Link>
