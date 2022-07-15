@@ -28,7 +28,7 @@ const HomePage = () => {
             <Page initial='hidden' animate='visible' exit='exit' variants={pageVariants}>
                 <Content variants={contentVariants}>
                     <TopLogo src="/images/cta-logo-one.svg" alt="Top Logo" variants={pageItemsVariants}/>
-                    <SingUpButton variants={pageItemsVariants}>get all there</SingUpButton>
+                    <SingUpButton variants={pageItemsVariants} whileTap={{ scale: 0.9 }}>get all there</SingUpButton>
                     <Description variants={pageItemsVariants}>
                         Get Premier Access to Raya and the Last Dragon for an additional fee
                         with a Disney+ subscription. As of 03/26/21, the price of Disney+
@@ -81,7 +81,7 @@ const SingUpButton = styled(motion.div)`
     padding: 1rem .4rem;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: all .3s;
+    transition: background-color .3s;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 900;

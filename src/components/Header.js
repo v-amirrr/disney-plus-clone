@@ -84,9 +84,10 @@ const Navbar = styled(motion.div)`
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     background-color: #000000aa;
     transition: all .3s;
+    user-select: none;
 
     &:hover {
-    background-color: #00000088;
+        background-color: #00000088;
     }
 `;
 
@@ -153,12 +154,13 @@ const LoginButton = styled(motion.div)`
     letter-spacing: 1px;
     padding: .5rem .8rem;
     border-radius: 6px;
-    transition: all .3s;
+    transition: border-color .3s;
     font-weight: 900;
+    transition: all .3s;
 
     &:hover {
-        letter-spacing: 1.5px;
         border-color: transparent;
+        letter-spacing: 3px;
     }
 `;
 
