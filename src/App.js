@@ -1,17 +1,26 @@
 import React from 'react';
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
-import HomePage from './components/HomePage';
-import Header from './components/Header';
+import BeforeLogin from './components/BeforeLogin';
+import Login from './components/Login';
+
+import { AnimatePresence } from 'framer-motion';
 
 const App = () => {
+
+    const location = useLocation();
+
     return (
         <>
-            <Header />
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-            </Routes>
+            <AnimatePresence exitBeforeEnter>
+
+                <Routes location={location} key={location.key}>
+                    <Route path="/" element={<BeforeLogin />} />
+                    <Route path="/login" element={<Login />} />
+                </Routes>
+                
+            </AnimatePresence>
         </>
     );
 };

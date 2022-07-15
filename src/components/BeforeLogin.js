@@ -2,6 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import Header from "./Header";
+
 import { motion } from 'framer-motion';
 
 const pageVariants = {
@@ -12,7 +14,7 @@ const pageVariants = {
 
 const contentVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: {duration: 0.5, type: 'tween', staggerChildren: 0.2 } },
+    visible: { opacity: 1, transition: { duration: 0.5, type: 'tween', staggerChildren: 0.2 } },
     exit: { opacity: 0, transition: { duration: 0.5, type: 'tween' } }
 };
 
@@ -22,9 +24,11 @@ const pageItemsVariants = {
     exit: { opacity: 0, y: 10, transition: { duration: 0.5, type: 'tween' } }
 };
 
-const HomePage = () => {
+const BeforeLogin = () => {
     return (
         <>
+            <Header />
+
             <Page initial='hidden' animate='visible' exit='exit' variants={pageVariants}>
                 <Content variants={contentVariants}>
                     <TopLogo src="/images/cta-logo-one.svg" alt="Top Logo" variants={pageItemsVariants}/>
@@ -108,4 +112,4 @@ const BottomLogo = styled(motion.img)`
     margin-top: 1rem;
 `;
 
-export default HomePage;
+export default BeforeLogin;

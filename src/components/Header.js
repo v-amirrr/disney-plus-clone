@@ -2,6 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { Link } from "react-router-dom";
+
 import { motion } from 'framer-motion';
 
 const navbarVariants = {
@@ -64,7 +66,10 @@ const Header = () => {
                         <p>series</p>
                     </NavbarMenuItem>
                 </NavbarMenu>
-                <LoginButton variants={logoVariants}>login</LoginButton>
+
+                <Link to="/login">
+                    <LoginButton variants={logoVariants}>login</LoginButton>
+                </Link>
             </Navbar>
         </>
     );
