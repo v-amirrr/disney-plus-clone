@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import useLogin from '../hooks/useLogin';
 
 import { FcGoogle } from 'react-icons/fc';
-import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
+import { IoIosEye } from 'react-icons/io';
 
 import { motion } from 'framer-motion';
 
@@ -142,7 +142,6 @@ const FormInput = styled(motion.div)`
             border-color: #555;
         }
     }
-
 `;
 
 const FormInputPassword = styled(motion.div)`
