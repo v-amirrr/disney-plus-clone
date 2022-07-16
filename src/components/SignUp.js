@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
 import useLogin from '../hooks/useLogin';
+import useSignUp from '../hooks/useSignUp';
 
 import { FcGoogle } from 'react-icons/fc';
 import { IoIosEye } from 'react-icons/io';
@@ -32,9 +33,15 @@ const formItemVariants = {
 const Login = () => {
 
     const { loginWithGoogle } = useLogin();
+    const { signup } = useSignUp();
 
     const [passwordShow, setPasswordShow] = useState(false);
     const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
+
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmation, setConfirmation] = useState("");
 
     return (
         <>
@@ -43,11 +50,15 @@ const Login = () => {
                     <FormHeader variants={formItemVariants}>sign up with your email</FormHeader>
 
                     <FormInputs variants={formItemVariants}>
-                        <FormInput><input variants={formItemVariants} type="text" placeholder='name' /></FormInput>
-                        <FormInput><input variants={formItemVariants} type="email" placeholder='email' /></FormInput>
+                        <FormInput>
+                            <input variants={formItemVariants} type="text" placeholder='name' onChange={e => setUsername(e.target.value)} value={username} />
+                        </FormInput>
+                        <FormInput>
+                            <input variants={formItemVariants} type="email" placeholder='email' onChange={e => setEmail(e.target.value)} value={email} />
+                        </FormInput>
                         
                         <FormInput>
-                            <input variants={formItemVariants} type={passwordShow ? "text" : "password"} placeholder='password' id='password' />
+                            <input variants={formItemVariants} type={passwordShow ? "text" : "password"} placeholder='password' id='password' onChange={e => setPassword(e.target.value)} value={password} />
                             <FormInputPassword passwordShow={passwordShow}>
                                 <input type="checkbox" onChange={() => setPasswordShow(!passwordShow)} value={passwordShow} />
                                 <span><IoIosEye /></span>
@@ -55,7 +66,7 @@ const Login = () => {
                         </FormInput>
 
                         <FormInput>
-                            <input variants={formItemVariants} type={confirmPasswordShow ? "text" : "password"} placeholder='confirm' />
+                            <input variants={formItemVariants} type={confirmPasswordShow ? "text" : "password"} placeholder='confirm' onChange={e => setConfirmation(e.target.value)} value={confirmation} />
                             <FormInputPassword passwordShow={confirmPasswordShow}>
                                 <input type="checkbox" onChange={() => setConfirmPasswordShow(!confirmPasswordShow)} value={confirmPasswordShow} />
                                 <span><IoIosEye /></span>
@@ -63,7 +74,7 @@ const Login = () => {
                         </FormInput>
                     </FormInputs>
 
-                    <FormButton variants={formItemVariants} whileTap={{ scale: 0.9 }}>sign up</FormButton>
+                    <FormButton variants={formItemVariants} whileTap={{ scale: 0.9 }} onClick={() => signup(username, email, password, confirmation)}>sign up</FormButton>
                     <FormGoogle variants={formItemVariants} whileTap={{ scale: 0.9 }} onClick={loginWithGoogle}><span><FcGoogle /></span>sign up with google</FormGoogle>
 
                     <FormText variants={formItemVariants}>

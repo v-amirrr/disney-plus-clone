@@ -10,15 +10,15 @@ const useLogin = () => {
 
     const loginWithGoogle = () => {
         signInWithPopup(auth, provider)
-            .then((res) => {
+            .then(res => {
                 dispatch(login(res.user));
             })
-            .catch((err) => {
+            .catch(err => {
                 console.log(err);
             });
-    }
+    };
 
     return { loginWithGoogle };
-}
+};
 
 export default useLogin;
