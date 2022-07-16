@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import useLogin from '../hooks/useLogin';
 
 import { FcGoogle } from 'react-icons/fc';
+import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
 
 import { motion } from 'framer-motion';
 
@@ -32,6 +33,9 @@ const Login = () => {
 
     const { loginWithGoogle } = useLogin();
 
+    const [passwordShow, setPasswordShow] = useState(false);
+    const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
+
     return (
         <>
             <Page initial='hidden' animate='visible' exit='exit' variants={pageVariants}>
@@ -39,10 +43,24 @@ const Login = () => {
                     <FormHeader variants={formItemVariants}>sign up with your email</FormHeader>
 
                     <FormInputs variants={formItemVariants}>
-                        <input variants={formItemVariants} type="text" placeholder='name' />
-                        <input variants={formItemVariants} type="email" placeholder='email' />
-                        <input variants={formItemVariants} type="password" placeholder='password' />
-                        <input variants={formItemVariants} type="password" placeholder='confirm' />
+                        <FormInput><input variants={formItemVariants} type="text" placeholder='name' /></FormInput>
+                        <FormInput><input variants={formItemVariants} type="email" placeholder='email' /></FormInput>
+                        
+                        <FormInput>
+                            <input variants={formItemVariants} type={passwordShow ? "text" : "password"} placeholder='password' id='password' />
+                            <FormInputPassword passwordShow={passwordShow}>
+                                <input type="checkbox" onChange={() => setPasswordShow(!passwordShow)} value={passwordShow} />
+                                <span><IoIosEye /></span>
+                            </FormInputPassword>
+                        </FormInput>
+
+                        <FormInput>
+                            <input variants={formItemVariants} type={confirmPasswordShow ? "text" : "password"} placeholder='confirm' />
+                            <FormInputPassword passwordShow={confirmPasswordShow}>
+                                <input type="checkbox" onChange={() => setConfirmPasswordShow(!confirmPasswordShow)} value={confirmPasswordShow} />
+                                <span><IoIosEye /></span>
+                            </FormInputPassword>
+                        </FormInput>
                     </FormInputs>
 
                     <FormButton variants={formItemVariants} whileTap={{ scale: 0.9 }}>sign up</FormButton>
@@ -94,16 +112,26 @@ const FormInputs = styled(motion.div)`
     align-items: center;
     flex-direction: column;
     width: 100%;
+`;
+
+const FormInput = styled(motion.div)`
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
 
     input {
         all: unset;
-        margin: .3rem;
+        margin: .3rem 0;
         background-color: #222;
         padding: .4rem;
         border-radius: 4px;
         text-align: left;
         width: 80%;
         border: solid 1px #00000000;
+        width: 100%;
         transition: border-color .3s;
 
         &:focus {
@@ -113,6 +141,54 @@ const FormInputs = styled(motion.div)`
         &:not(:placeholder-shown) {
             border-color: #555;
         }
+    }
+
+`;
+
+const FormInputPassword = styled(motion.div)`
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 2rem;
+    height: 100%;
+
+    input {
+        position: absolute;
+        inset: 0 0 0 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: 3;
+    }
+
+    span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        font-size: 1.2rem;
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        &::before {
+            position: absolute;
+            content: "";
+            width: ${props => (props.passwordShow ? "0" : "60%")};
+            height: .1rem;
+            transform: rotate(45deg);
+            background-color: #fff;
+            transition: all .3s;
+        }
+    }
+
+    span > * {
+        position: relative;
+
     }
 `;
 
@@ -162,7 +238,7 @@ const FormGoogle = styled(motion.div)`
     &:hover {
         background-color: #080e28;
     }
-    `;
+`;
     
 const FormText = styled(motion.div)`
     margin-top: 1.5rem;
