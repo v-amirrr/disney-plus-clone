@@ -28,11 +28,15 @@ const formItemVariants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, type: 'tween' } },
     exit: { opacity: 0, y: 20, transition: { duration: 0.5, type: 'tween' } }
 };
+
 const Login = () => {
 
-    const { loginWithGoogle } = useLogin();
+    const { loginWithGoogle, loginWithEmail } = useLogin();
 
     const [passwordShow, setPasswordShow] = useState(false);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     return (
         <>
@@ -41,9 +45,9 @@ const Login = () => {
                     <FormHeader variants={formItemVariants}>login with your email</FormHeader>
 
                     <FormInputs variants={formItemVariants}>
-                        <FormInput><input variants={formItemVariants} type="email" placeholder='email' /></FormInput>
+                        <FormInput><input variants={formItemVariants} type="email" placeholder='email' onChange={e => setEmail(e.target.value)} value={email} /></FormInput>
                         <FormInput>
-                            <input variants={formItemVariants} type={passwordShow ? "text" : "password"} placeholder='password' id='password' />
+                            <input variants={formItemVariants} type={passwordShow ? "text" : "password"} placeholder='password'  onChange={e => setPassword(e.target.value)} value={password} />
                             <FormInputPassword passwordShow={passwordShow}>
                                 <input type="checkbox" onChange={() => setPasswordShow(!passwordShow)} value={passwordShow} />
                                 <span><IoIosEye /></span>
@@ -51,7 +55,7 @@ const Login = () => {
                         </FormInput>
                     </FormInputs>
 
-                    <FormButton variants={formItemVariants} whileTap={{ scale: 0.9 }}>login</FormButton>
+                    <FormButton variants={formItemVariants} whileTap={{ scale: 0.9 }} onClick={() => loginWithEmail(email, password)}>login</FormButton>
                     <FormGoogle variants={formItemVariants} whileTap={{ scale: 0.9 }} onClick={loginWithGoogle}><span><FcGoogle /></span>login with google</FormGoogle>
 
                     <FormText variants={formItemVariants}>

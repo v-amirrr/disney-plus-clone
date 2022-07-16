@@ -1,5 +1,5 @@
 import { provider, auth } from "../config/firebase";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword , signInWithPopup} from "firebase/auth";
 
 import { login } from "../redux/user/userAction";
 import { useDispatch } from "react-redux";
@@ -18,7 +18,18 @@ const useLogin = () => {
             });
     };
 
-    return { loginWithGoogle };
+    const loginWithEmail = (email, password) => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then(res => {
+                dispatch(login(res.user));
+                console.log(res.user);
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
+    };
+
+    return { loginWithGoogle, loginWithEmail };
 };
 
 export default useLogin;

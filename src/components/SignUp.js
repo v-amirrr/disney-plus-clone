@@ -58,7 +58,7 @@ const Login = () => {
                         </FormInput>
                         
                         <FormInput>
-                            <input variants={formItemVariants} type={passwordShow ? "text" : "password"} placeholder='password' id='password' onChange={e => setPassword(e.target.value)} value={password} />
+                            <input variants={formItemVariants} type={passwordShow ? "text" : "password"} placeholder='password' onChange={e => setPassword(e.target.value)} value={password} />
                             <FormInputPassword passwordShow={passwordShow}>
                                 <input type="checkbox" onChange={() => setPasswordShow(!passwordShow)} value={passwordShow} />
                                 <span><IoIosEye /></span>
