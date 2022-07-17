@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Routes, Route, useLocation } from 'react-router-dom';
 
-import BeforeLogin from './components/BeforeLogin';
+import HomePage from './components/HomePage';
 import Login from './components/Login';
 import SignUp from "./components/SignUp";
 import Error from './components/Error';
@@ -18,7 +18,7 @@ const App = () => {
             <AnimatePresence exitBeforeEnter>
                 <Error />
                 <Routes location={location} key={location.key}>
-                    <Route path="/" element={<BeforeLogin />} />
+                    <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
                 </Routes>
