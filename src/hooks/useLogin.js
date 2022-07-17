@@ -2,6 +2,7 @@ import { provider, auth } from "../config/firebase";
 import { signInWithEmailAndPassword , signInWithPopup} from "firebase/auth";
 
 import { login } from "../redux/user/userAction";
+import { setNewError } from "../redux/error/errorAction";
 import { useDispatch } from "react-redux";
 
 const useLogin = () => {
@@ -14,7 +15,7 @@ const useLogin = () => {
                 dispatch(login(res.user));
             })
             .catch(err => {
-                console.log(err);
+                dispatch(setNewError(err.message));
             });
     };
 
@@ -25,7 +26,7 @@ const useLogin = () => {
                 console.log(res.user);
             })
             .catch(err => {
-                console.log(err.message);
+                dispatch(setNewError(err.message));
             });
     };
 

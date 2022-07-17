@@ -3,13 +3,14 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 import { useDispatch } from "react-redux/es/exports";
 import { login } from "../redux/user/userAction";
+import { setNewError } from "../redux/error/errorAction";
 
 const useSignUp = () => {
 
     const dispatch = useDispatch();
 
     const signup = (username, email, password, confirmation) => {
-        if (username, email, password, confirmation) {
+        if (username && email && password && confirmation) {
             if (password == confirmation) {
 
                 createUserWithEmailAndPassword(auth, email, password)
@@ -18,14 +19,14 @@ const useSignUp = () => {
                         dispatch(login(res.user));
                     })
                     .catch(err => {
-                        console.log(err.message);
+                        dispatch(setNewError(err.message));
                     });
 
             } else {
-                console.log("The passwords aren't the same");
+                dispatch(setNewError("the passwords aren't the same."));
             }
         } else {
-            console.log("You have to fill all of the inputs");
+            dispatch(setNewError("you have to fill all of the inputs."));
         }
     };
 
