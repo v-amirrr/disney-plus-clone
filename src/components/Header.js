@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 import { RiAccountPinCircleFill } from 'react-icons/ri';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const navbarVariants = {
     hidden: { opacity: 0, y: -10 },
@@ -34,9 +34,17 @@ const navbarItemVariants = {
     exit: { opacity: 0, transition: { duration: 0.5, type: 'tween' } }
 };
 
+const userSettingVariants = {
+    hidden: { opacity: 0, scaleY: 0, y: -20 },
+    visible: { opacity: 1, scaleY: 1, y: 0, transition: { duration: 0.4, type: 'tween' } },
+    exit: { opacity: 0, scaleY: 0, y: -40, transition: { duration: 0.4, type: 'tween' } }
+};
+
 const Header = () => {
 
     const user = useSelector(state => state.userState.user);
+
+    const [userSetting, setUSerSetting] = useState(false);
 
     return (
         <>
@@ -82,15 +90,29 @@ const Header = () => {
                 {
                     user
                     ?
-                    <UserButton whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} variants={logoVariants}>
-                        {
-                            user.photoURL
-                            ?
-                            <img src={user?.photoURL} />
-                            :
-                            <i><RiAccountPinCircleFill /></i>
-                        }
-                    </UserButton>
+                    <User>
+                        <UserButton whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} variants={logoVariants} onClick={() => setUSerSetting(!userSetting)}>
+                            {
+                                user.photoURL
+                                ?
+                                <img src={user?.photoURL} />
+                                :
+                                <i><RiAccountPinCircleFill /></i>
+                            }
+                        </UserButton>
+
+                        <AnimatePresence>
+                            {
+                                userSetting
+                                &&
+                                <UserSetting variants={userSettingVariants} initial='hidden' animate='visible' exit='exit'>
+                                    <div>Log Out</div>
+                                    <hr />
+                                    <div className='red' onClick={() => setUSerSetting(false)}>Close</div>
+                                </UserSetting>
+                            }
+                        </AnimatePresence>
+                    </User>
                     :
                     <Link to="/login">
                         <LoginButton variants={logoVariants}>login</LoginButton>
@@ -179,6 +201,33 @@ const NavbarMenuItem = styled(motion.div)`
     }
 `;
 
+const LoginButton = styled(motion.div)`
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: #000;
+    border: solid 1px #ffffff44;
+    letter-spacing: 1px;
+    padding: .5rem .8rem;
+    border-radius: 6px;
+    transition: border-color .3s;
+    font-weight: 900;
+    transition: all .3s;
+
+    &:hover {
+        border-color: transparent;
+        letter-spacing: 3px;
+    }
+`;
+
+const User = styled(motion.div)`
+    position: relative;
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`;
+
 const UserButton = styled(motion.div)`
     border-radius: 50%;
     overflow: hidden;
@@ -196,21 +245,52 @@ const UserButton = styled(motion.div)`
     }
 `;
 
-const LoginButton = styled(motion.div)`
-    text-transform: uppercase;
-    cursor: pointer;
-    background-color: #000;
-    border: solid 1px #ffffff44;
-    letter-spacing: 1px;
-    padding: .5rem .8rem;
+const UserSetting = styled(motion.div)`
+    position: absolute;
+    top: 100%;
     border-radius: 6px;
+    margin-top: .5rem;
+    width: 100%;
+    height: 4rem;
+    background-color: #ffffff22;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: solid 1px #ffffff00;
+    overflow: hidden;
     transition: border-color .3s;
-    font-weight: 900;
-    transition: all .3s;
 
     &:hover {
-        border-color: transparent;
-        letter-spacing: 3px;
+        border-color: #ffffff01;
+    }
+
+    hr {
+        width: 100%;
+        opacity: .5;
+    }
+
+    div {
+        font-size: .8rem;
+        width: 100%;
+        height: 50%;
+        text-align: center;
+        cursor: pointer;
+        transition: letter-spacing .3s, background-color .3s;
+        font-weight: 900;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        
+        &:hover {
+            background-color: #000;
+            letter-spacing: 2px;
+        }
+    }
+
+    .red {
+        color: red;
     }
 `;
 
