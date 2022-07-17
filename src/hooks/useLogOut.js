@@ -14,7 +14,8 @@ const useLogout = () => {
     const logoutUser = () => {
         signOut(auth)
             .then(res => {
-                dispatch(logout(res));
+                console.log("sss");
+                dispatch(logout());
                 localStorage.clear();
                 navigate("/");
             })

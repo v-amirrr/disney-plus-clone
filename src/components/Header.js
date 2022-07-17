@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
-
-import useLogout from '../hooks/useLogOut';
 
 import { RiAccountPinCircleFill } from 'react-icons/ri';
 
@@ -46,11 +44,11 @@ const Header = () => {
 
     const user = useSelector(state => state.userState.user);
 
-    const { logoutUser } = useLogout();
+    const navigate = useNavigate();
 
     const logout = () => {
         setUSerSetting(false);
-        logoutUser();
+        navigate("/logout");
     };
 
     const [userSetting, setUSerSetting] = useState(false);
