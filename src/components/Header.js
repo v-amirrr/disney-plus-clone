@@ -4,6 +4,10 @@ import styled from 'styled-components';
 
 import { Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
+import { RiAccountPinCircleFill } from 'react-icons/ri';
+
 import { motion } from 'framer-motion';
 
 const navbarVariants = {
@@ -13,9 +17,9 @@ const navbarVariants = {
 };
 
 const logoVariants = {
-    hidden: { opacity: 0, scale: 0 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, type: 'tween' } },
-    exit: { opacity: 0, transition: { duration: 0.5, type: 'tween' } }
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, type: 'tween' } },
+    exit: { opacity: 0, y: -20, transition: { duration: 0.5, type: 'tween' } }
 };
 
 const navbarMenuVariants = {
@@ -31,45 +35,68 @@ const navbarItemVariants = {
 };
 
 const Header = () => {
+
+    const user = useSelector(state => state.userState.user);
+
     return (
         <>
             <Navbar initial='hidden' animate='visible' exit='exit' variants={navbarVariants}>
                 <Logo src='/images/logo.svg' alt="Header Logo" variants={logoVariants} />
-                <NavbarMenu variants={navbarMenuVariants}>
-                    <NavbarMenuItem variants={navbarItemVariants}>
-                        <img src='/images/home-icon.svg' />
-                        <p>home</p>
-                    </NavbarMenuItem>
+                
+                {
+                    user 
+                    &&
+                    <NavbarMenu variants={navbarMenuVariants}>
+                        <NavbarMenuItem variants={navbarItemVariants}>
+                            <img src='/images/home-icon.svg' />
+                            <p>home</p>
+                        </NavbarMenuItem>
 
-                    <NavbarMenuItem variants={navbarItemVariants}>
-                        <img src='/images/search-icon.svg' />
-                        <p>search</p>
-                    </NavbarMenuItem>
+                        <NavbarMenuItem variants={navbarItemVariants}>
+                            <img src='/images/search-icon.svg' />
+                            <p>search</p>
+                        </NavbarMenuItem>
 
-                    <NavbarMenuItem variants={navbarItemVariants}>
-                        <img src='/images/watchlist-icon.svg' />
-                        <p>watchlist</p>
-                    </NavbarMenuItem>
+                        <NavbarMenuItem variants={navbarItemVariants}>
+                            <img src='/images/watchlist-icon.svg' />
+                            <p>watchlist</p>
+                        </NavbarMenuItem>
 
-                    <NavbarMenuItem variants={navbarItemVariants}>
-                        <img src='/images/original-icon.svg' />
-                        <p>original</p>
-                    </NavbarMenuItem>
+                        <NavbarMenuItem variants={navbarItemVariants}>
+                            <img src='/images/original-icon.svg' />
+                            <p>original</p>
+                        </NavbarMenuItem>
 
-                    <NavbarMenuItem variants={navbarItemVariants}>
-                        <img src='/images/movie-icon.svg' />
-                        <p>movie</p>
-                    </NavbarMenuItem>
+                        <NavbarMenuItem variants={navbarItemVariants}>
+                            <img src='/images/movie-icon.svg' />
+                            <p>movie</p>
+                        </NavbarMenuItem>
 
-                    <NavbarMenuItem variants={navbarItemVariants}>
-                        <img src='/images/series-icon.svg' />
-                        <p>series</p>
-                    </NavbarMenuItem>
-                </NavbarMenu>
+                        <NavbarMenuItem variants={navbarItemVariants}>
+                            <img src='/images/series-icon.svg' />
+                            <p>series</p>
+                        </NavbarMenuItem>
+                    </NavbarMenu>
+                }
+                
+                {
+                    user
+                    ?
+                    <UserButton whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} variants={logoVariants}>
+                        {
+                            user.photoURL
+                            ?
+                            <img src={user?.photoURL} />
+                            :
+                            <i><RiAccountPinCircleFill /></i>
+                        }
+                    </UserButton>
+                    :
+                    <Link to="/login">
+                        <LoginButton variants={logoVariants}>login</LoginButton>
+                    </Link>
+                }
 
-                <Link to="/login">
-                    <LoginButton variants={logoVariants}>login</LoginButton>
-                </Link>
             </Navbar>
         </>
     );
@@ -108,6 +135,7 @@ const NavbarMenu = styled.div`
     align-items: center;
     flex-direction: row;
     margin-left: 1rem;
+    z-index: 4;
 
     @media (max-width: 968px) {
         display: none;
@@ -148,6 +176,23 @@ const NavbarMenuItem = styled(motion.div)`
         p::before {
             width: 100%;
         }
+    }
+`;
+
+const UserButton = styled(motion.div)`
+    border-radius: 50%;
+    overflow: hidden;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    cursor: pointer;
+
+    img {
+        width: 2.5rem;
+        height: 2.5rem;
     }
 `;
 

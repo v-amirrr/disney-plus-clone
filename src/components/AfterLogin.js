@@ -1,10 +1,12 @@
 import React from 'react';
 
+import Header from './Header';
+
 const AfterLogin = () => {
     return (
-        <div>
-            after login
-        </div>
+        <>
+            <Header />
+        </>
     );
 };
 
