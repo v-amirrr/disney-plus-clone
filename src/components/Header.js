@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
+import useLogout from '../hooks/useLogOut';
+
 import { RiAccountPinCircleFill } from 'react-icons/ri';
 
 import { motion, AnimatePresence } from 'framer-motion';
@@ -35,14 +37,21 @@ const navbarItemVariants = {
 };
 
 const userSettingVariants = {
-    hidden: { opacity: 0, scaleY: 0, y: -20 },
-    visible: { opacity: 1, scaleY: 1, y: 0, transition: { duration: 0.4, type: 'tween' } },
-    exit: { opacity: 0, scaleY: 0, y: -40, transition: { duration: 0.4, type: 'tween' } }
+    hidden: { opacity: 0, height: 0 },
+    visible: { opacity: 1, height: 80, y: 0, transition: { duration: 0.4, type: 'tween' } },
+    exit: { opacity: 0, height: 0, transition: { duration: 0.4, type: 'tween' } }
 };
 
 const Header = () => {
 
     const user = useSelector(state => state.userState.user);
+
+    const { logoutUser } = useLogout();
+
+    const logout = () => {
+        setUSerSetting(false);
+        logoutUser();
+    };
 
     const [userSetting, setUSerSetting] = useState(false);
 
@@ -106,7 +115,7 @@ const Header = () => {
                                 userSetting
                                 &&
                                 <UserSetting variants={userSettingVariants} initial='hidden' animate='visible' exit='exit'>
-                                    <div>Log Out</div>
+                                    <div onClick={logout}>Log Out</div>
                                     <hr />
                                     <div className='red' onClick={() => setUSerSetting(false)}>Close</div>
                                 </UserSetting>
@@ -285,7 +294,7 @@ const UserSetting = styled(motion.div)`
         
         &:hover {
             background-color: #000;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
     }
 
