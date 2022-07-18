@@ -122,7 +122,7 @@ const Header = () => {
                     </User>
                     :
                     <Link to="/login">
-                        <LoginButton variants={logoVariants}>login</LoginButton>
+                        <LoginButton variants={logoVariants} whileTap={{ scale: 0.9 }}>login</LoginButton>
                     </Link>
                 }
 
@@ -218,11 +218,9 @@ const LoginButton = styled(motion.div)`
     border-radius: 6px;
     transition: border-color .3s;
     font-weight: 900;
-    transition: all .3s;
 
     &:hover {
         border-color: transparent;
-        letter-spacing: 3px;
     }
 `;
 

@@ -1,5 +1,6 @@
 const initialState = {
     user: null,
+    loading: false,
 };
 
 export const userReducer = (state=initialState, action) => {
@@ -9,6 +10,12 @@ export const userReducer = (state=initialState, action) => {
 
         case "LOGOUT":
             return { user: null };
+
+        case "LOADING_ON":
+            return { ...state, loading: true };
+
+        case "LOADING_OFF":
+            return { ...state, loading: false };
 
         default:
             return state;
