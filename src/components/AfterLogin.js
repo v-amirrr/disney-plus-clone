@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import Header from './Header';
 import ImageSlider from './ImageSlider';
+import Companies from './Companies';
 
 import { motion } from 'framer-motion';
 
@@ -19,6 +20,7 @@ const AfterLogin = () => {
             <Header />
             <Page initial='hidden' animate='visible' exit='exit' variants={pageVariants}>
                 <ImageSlider />
+                <Companies />
             </Page>
         </>
     );
@@ -27,8 +29,6 @@ const AfterLogin = () => {
 const Page = styled(motion.div)`
     width: 100%;
     height: 100%;
-    background-image: url("/images/home-background.png");
-    background-size: 100% 100%;
     padding-top: 4rem;
 `;
 
