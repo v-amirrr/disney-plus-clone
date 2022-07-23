@@ -56,7 +56,7 @@ const Loading = () => {
 const Page = styled(motion.div)`
     position: absolute;
     top: 0;
-    z-index: 4;
+    z-index: 999;
     background-color: #00000055;
     backdrop-filter: blur(30px) saturate(180%);
     -webkit-backdrop-filter: blur(30px) saturate(180%);

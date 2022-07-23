@@ -7,28 +7,27 @@ import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 
-const useLogout = () => {
+const useLogOut = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const logoutUser = () => {
         dispatch(loadingOn());
+
         signOut(auth)
             .then(res => {
-                console.log("sss");
                 dispatch(logout());
                 localStorage.clear();
                 navigate("/");
                 dispatch(loadingOff());
             })
             .catch(err => {
-                dispatch(setNewError(err));
-                navigate("/");
                 dispatch(loadingOff());
+                dispatch(setNewError(err));
             });
     };
 
     return { logoutUser };
 };
 
-export default useLogout;
+export default useLogOut;

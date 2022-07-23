@@ -104,6 +104,7 @@ const FormInputs = styled(motion.div)`
     align-items: center;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 1.5rem;
 `;
 
 const FormInput = styled(motion.div)`
@@ -117,21 +118,21 @@ const FormInput = styled(motion.div)`
     input {
         all: unset;
         margin: .3rem 0;
-        background-color: #222;
+        background-color: #121212;
         padding: .4rem;
         border-radius: 4px;
         text-align: left;
         width: 80%;
-        border: solid 1px #00000000;
+        border: solid 2px #00000000;
         width: 100%;
         transition: border-color .3s;
 
         &:focus {
-            border-color: #555;
+            border-color: #404040;
         }
 
         &:not(:placeholder-shown) {
-            border-color: #555;
+            border-color: #404040;
         }
     }
 `;
@@ -185,38 +186,40 @@ const FormInputPassword = styled(motion.div)`
 
 const FormButton = styled(motion.div)`
     text-transform: uppercase;
-    margin-top: 1.5rem;
+    margin-bottom: .6rem;
     background-color: #0063e5;
     cursor: pointer;
     letter-spacing: 1px;
-    padding: .5rem .8rem;
     border-radius: 6px;
     transition: letter-spacing .3s, background-color .3s;
     font-weight: 900;
-    min-width: 70%;
+    width: 80%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 
     &:hover {
-        letter-spacing: 3px;
         background-color: #0483ee;
     }
 `;
 
 const FormGoogle = styled(motion.div)`
     font-weight: 900;
-    min-width: 70%;
     white-space: nowrap;
     cursor: pointer;
     letter-spacing: 1px;
-    padding: .5rem .8rem;
+    width: 80%;
+    height: 2.5rem;
     border-radius: 6px;
     text-transform: capitalize;
-    margin-top: .6rem;
     border: solid 1px #44444477;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    transition: background-color .3s;
+    transition: background-color .3s, border .3s;
 
     span {
         display: flex;
@@ -227,7 +230,8 @@ const FormGoogle = styled(motion.div)`
     }
     
     &:hover {
-        background-color: #080e28;
+        border: solid 1px #44444400;
+        background-color: #00000088;
     }
     `;
     

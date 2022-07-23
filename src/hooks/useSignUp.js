@@ -26,8 +26,8 @@ const useSignUp = () => {
                         dispatch(loadingOff());
                     })
                     .catch(err => {
-                        dispatch(setNewError(err.message));
                         dispatch(loadingOff());
+                        dispatch(setNewError(err.message));
                     });
 
             } else {

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 
-import useLogout from "../hooks/useLogOut";
+import useLogOut from "../hooks/useLogOut";
 
 const pageVariants = {
     hidden: { opacity: 0 },
@@ -26,7 +26,7 @@ const LogOutConfirmation = () => {
 
     const navigate = useNavigate();
 
-    const { logoutUser } = useLogout();
+    const { logoutUser } = useLogOut();
 
     const user = useSelector(state => state.userState.user);
 

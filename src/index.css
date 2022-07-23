@@ -32,7 +32,8 @@ html {
 body {
     font-family: 'Avenir', sans-serif;
     color: #f9f9f9;
-    background-color: #040714;
+    background-image: url("../public/images/home-background.png");
+    background-size: 100% 100%;
 }
 
 :any-link {

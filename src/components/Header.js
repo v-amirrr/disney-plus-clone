@@ -143,12 +143,11 @@ const Navbar = styled(motion.div)`
     height: 4rem;
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: #000000aa;
+    background-color: #00000088;
     transition: all .3s;
     user-select: none;
 
     &:hover {
-        background-color: #00000088;
     }
 `;
 
@@ -257,7 +256,7 @@ const UserSetting = styled(motion.div)`
     margin-top: .5rem;
     width: 100%;
     height: 4rem;
-    background-color: #ffffff22;
+    background-color: #555;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -265,7 +264,7 @@ const UserSetting = styled(motion.div)`
     border: solid 1px #ffffff00;
     overflow: hidden;
     transition: border-color .3s;
-
+    
     &:hover {
         border-color: #ffffff01;
     }

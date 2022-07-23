@@ -23,25 +23,29 @@ const useLogin = () => {
                 dispatch(loadingOff());
             })
             .catch(err => {
-                dispatch(setNewError(err.message));
                 dispatch(loadingOff());
+                dispatch(setNewError(err.message));
             });
     };
 
     const loginWithEmail = (email, password) => {
-        dispatch(loadingOn());
-
-        signInWithEmailAndPassword(auth, email, password)
-            .then(res => {
-                localStorage.setItem("user", JSON.stringify(res.user));
-                dispatch(login(res.user));
-                navigate("/");
-                dispatch(loadingOff());
-            })
-            .catch(err => {
-                dispatch(setNewError(err.message));
-                dispatch(loadingOff());
-            });
+        if (email && password) {
+            dispatch(loadingOn());
+    
+            signInWithEmailAndPassword(auth, email, password)
+                .then(res => {
+                    localStorage.setItem("user", JSON.stringify(res.user));
+                    dispatch(login(res.user));
+                    navigate("/");
+                    dispatch(loadingOff());
+                })
+                .catch(err => {
+                    dispatch(loadingOff());
+                    dispatch(setNewError(err.message));
+                });
+        } else {
+            dispatch(setNewError("you have to fill all of the inputs."));
+        }
     };
 
     return { loginWithGoogle, loginWithEmail };
