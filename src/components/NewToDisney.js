@@ -10,11 +10,11 @@ const sectionVariants = {
     exit: { opacity: 0, transition: { duration: 0.4, type: 'tween' } }
 };
 
-const Recommends = () => {
+const NewToDisney = () => {
     return (
         <>
           <Section initial='hidden' animate='visible' exit='exit' variants={sectionVariants}>
-            <h4>recommended for you</h4>
+            <h4>new to display+</h4>
             <Items>
                 <motion.div whileHover={{ scale: 1.1 }}>
                     <img src='/images/viewers-marvel.png' alt='recommended images' />
@@ -83,4 +83,4 @@ const Items = styled(motion.div)`
     }
 `;
 
-export default Recommends;
+export default NewToDisney;
