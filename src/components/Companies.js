@@ -82,6 +82,7 @@ const Section = styled(motion.div)`
         cursor: pointer;
         overflow: hidden;
         border: 3px solid rgba(249, 249, 249, 0.1);
+        transition: border-color .3s;
 
         @media (max-width: 968px) {
             margin: 1rem;
@@ -101,6 +102,8 @@ const Section = styled(motion.div)`
         }
 
         &:hover {
+            border-color: rgba(249, 249, 249, 0.6);
+            
             video {
                 opacity: 1;
             }
