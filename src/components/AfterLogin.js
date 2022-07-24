@@ -8,6 +8,7 @@ import Companies from './Companies';
 import Recommends from './Recommends';
 import NewToDisney from './NewToDisney';
 import Originals from "./Originals";
+import Trending from "./Trending";
 
 import { motion } from 'framer-motion';
 
@@ -27,6 +28,7 @@ const AfterLogin = () => {
                 <Recommends />
                 <NewToDisney />
                 <Originals />
+                <Trending />
             </Page>
         </>
     );
