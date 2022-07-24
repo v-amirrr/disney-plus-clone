@@ -7,6 +7,7 @@ import ImageSlider from './ImageSlider';
 import Companies from './Companies';
 import Recommends from './Recommends';
 import NewToDisney from './NewToDisney';
+import Originals from "./Originals";
 
 import { motion } from 'framer-motion';
 
@@ -25,6 +26,7 @@ const AfterLogin = () => {
                 <Companies />
                 <Recommends />
                 <NewToDisney />
+                <Originals />
             </Page>
         </>
     );
