@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,6 +10,10 @@ import NewToDisney from './NewToDisney';
 import Originals from "./Originals";
 import Trending from "./Trending";
 
+import useSetMovie from '../hooks/useSetMovie';
+
+import { useSelector } from 'react-redux';
+
 import { motion } from 'framer-motion';
 
 const pageVariants = {
@@ -19,6 +23,16 @@ const pageVariants = {
 };
 
 const AfterLogin = () => {
+
+    const user = useSelector(state => state.userState.user);
+    const movies = useSelector(state => state.movieState);
+
+    const { setMovies } = useSetMovie();
+
+    useEffect(() => {
+        setMovies();
+    }, []);
+
     return (
         <>
             <Header />

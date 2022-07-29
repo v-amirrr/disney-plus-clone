@@ -1,18 +1,18 @@
 const initialState = {
-    recommended: null,
-    newToDisney: null,
-    originals: null,
-    trending: null
+    recommend: "",
+    newToDisney: "",
+    original: "",
+    trending: "",
 };
 
-export const userReducer = (state=initialState, action) => {
+export const movieReducer = (state=initialState, action) => {
     switch (action.type) {
         case "SET_MOVIE":
             return { 
                 ...state, 
-                recommended: action.payload.recommended, 
+                recommend: action.payload.recommend, 
                 newToDisney: action.payload.newToDisney, 
-                originals: action.payload.originals, 
+                original: action.payload.original, 
                 trending: action.payload.trending,  
             };
 
