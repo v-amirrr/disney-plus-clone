@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
 import styled from 'styled-components';
 
 import { motion } from 'framer-motion';
@@ -11,28 +13,27 @@ const sectionVariants = {
 };
 
 const Trending = () => {
-    return (
+        
+    const movies = useSelector(state => state.movieState.trending);
+
+   return (
         <>
-          <Section initial='hidden' animate='visible' exit='exit' variants={sectionVariants}>
-            <h4>trending</h4>
-            <Items>
-                <motion.div whileHover={{ scale: 1.1 }}>
-                    <img src='/images/viewers-marvel.png' alt='recommended images' />
-                </motion.div>
-
-                <motion.div whileHover={{ scale: 1.1 }}>
-                    <img src='/images/viewers-marvel.png' alt='recommended images' />
-                </motion.div>
-
-                <motion.div whileHover={{ scale: 1.1 }}>
-                    <img src='/images/viewers-marvel.png' alt='recommended images' />
-                </motion.div>
-
-                <motion.div whileHover={{ scale: 1.1 }}>
-                    <img src='/images/viewers-marvel.png' alt='recommended images' />
-                </motion.div>
-            </Items>
-          </Section>  
+            {
+                !!movies
+                &&
+                <Section initial='hidden' animate='visible' exit='exit' variants={sectionVariants}>
+                    <h4>trending</h4>
+                    <Items>
+                        {
+                            movies.map(movie => (
+                                <motion.div whileHover={{ scale: 1.1 }} key={movie.id}>
+                                    <img src={movie.cardImg} alt={movie.title} />
+                                </motion.div>
+                            ))
+                        }
+                    </Items>
+                </Section>  
+            } 
         </>
     );
 };
