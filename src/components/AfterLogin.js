@@ -25,13 +25,12 @@ const pageVariants = {
 const AfterLogin = () => {
 
     const user = useSelector(state => state.userState.user);
-    const movies = useSelector(state => state.movieState);
 
     const { setMovies } = useSetMovie();
 
     useEffect(() => {
         setMovies();
-    }, []);
+    }, [user]);
 
     return (
         <>

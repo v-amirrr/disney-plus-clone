@@ -18,7 +18,7 @@ const useSetMovie = () => {
         
         try {
             onSnapshot(ref, (snapshot) => {
-                snapshot.docs.forEach(doc => {
+                snapshot.docs.map(doc => {
                     switch (doc.data().type) {
                         case 'recommend':
                             recommend = [...recommend, { id: doc.id, ...doc.data() }];
@@ -36,14 +36,19 @@ const useSetMovie = () => {
                             trending = [...trending, { id: doc.id, ...doc.data() }];
                             break;
                     };
-                    
-                    dispatch(setMovie({
-                        recommend: recommend,
-                        newToDisney: newToDisney,
-                        original: original,
-                        trending: trending,
-                    }));
                 });
+                
+                recommend.length = 4;
+                newToDisney.length = 4;
+                original.length = 4;
+                trending.length = 4;
+
+                dispatch(setMovie({
+                    recommend: recommend,
+                    newToDisney: newToDisney,
+                    original: original,
+                    trending: trending,
+                }));
             });
 
         } catch (err) {
