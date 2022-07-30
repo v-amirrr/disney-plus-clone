@@ -7,7 +7,7 @@ import { setMovie } from "../redux/movie/movieAction";
 const useSetMovie = () => {
 
     const dispatch = useDispatch();
-
+    
     let recommend = [];
     let newToDisney = [];
     let original = [];
@@ -37,7 +37,7 @@ const useSetMovie = () => {
                             break;
                     };
                 });
-                
+
                 recommend.length = 4;
                 newToDisney.length = 4;
                 original.length = 4;

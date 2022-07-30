@@ -2,7 +2,7 @@ const initialState = {
     recommend: "",
     newToDisney: "",
     original: "",
-    trending: "",
+    trending: ""
 };
 
 export const movieReducer = (state=initialState, action) => {
@@ -12,7 +12,7 @@ export const movieReducer = (state=initialState, action) => {
                 recommend: action.payload.recommend, 
                 newToDisney: action.payload.newToDisney, 
                 original: action.payload.original, 
-                trending: action.payload.trending,  
+                trending: action.payload.trending
             };
 
         default:

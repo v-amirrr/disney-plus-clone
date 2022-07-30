@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
+import { Link } from "react-router-dom";
+
 import styled from 'styled-components';
 
 import { motion } from 'framer-motion';
@@ -26,9 +28,11 @@ const Recommends = () => {
                     <Items>
                         {
                             movies.map(movie => (
-                                <motion.div whileHover={{ scale: 1.1 }} key={movie.id}>
-                                    <img src={movie.cardImg} alt={movie.title} />
-                                </motion.div>
+                                <Link to={"/detail/" + movie.id}>
+                                    <motion.div whileHover={{ scale: 1.1 }} key={movie.id}>
+                                        <img src={movie.cardImg} alt={movie.title} />
+                                    </motion.div>
+                                </Link>
                             ))
                         }
                     </Items>
