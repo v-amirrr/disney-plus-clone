@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/user/userAction";
@@ -6,13 +6,11 @@ import { login } from "../redux/user/userAction";
 import AfterLogin from './AfterLogin';
 import BeforeLogin from "./BeforeLogin";
 
-const localUser = JSON.parse(localStorage.getItem("user"));
-
 const HomePage = () => {
 
     const dispatch = useDispatch();
 
-    const user = useSelector(state => state.userState.user);
+    const [localUser, setLocalUser] = useState(JSON.parse(localStorage.getItem("user")));
 
     useEffect(() => {
         if (localUser) {
@@ -23,7 +21,7 @@ const HomePage = () => {
     return (
         <>
             {
-                user
+                localUser
                 ?
                 <AfterLogin />
                 :

@@ -13,7 +13,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const navbarVariants = {
     hidden: { opacity: 0, y: -10 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, type: 'tween', when: "beforeChildren", delayChildren: 0.5, staggerChildren: 0.2 } },
-    exit: { opacity: 0, transition: { duration: 0.5, type: 'tween' } }
+    exit: { opacity: 0, transition: { duration: 0.5, type: 'tween', when: "beforeChildren" } }
 };
 
 const logoVariants = {
@@ -62,10 +62,12 @@ const Header = () => {
                     user 
                     &&
                     <NavbarMenu variants={navbarMenuVariants}>
-                        <NavbarMenuItem variants={navbarItemVariants}>
-                            <img src='/images/home-icon.svg' />
-                            <p>home</p>
-                        </NavbarMenuItem>
+                        <Link to="/">
+                            <NavbarMenuItem variants={navbarItemVariants}>
+                                <img src='/images/home-icon.svg' />
+                                <p>home</p>
+                            </NavbarMenuItem>
+                        </Link>
 
                         <NavbarMenuItem variants={navbarItemVariants}>
                             <img src='/images/search-icon.svg' />
@@ -102,7 +104,7 @@ const Header = () => {
                             {
                                 user.photoURL
                                 ?
-                                <img src={user?.photoURL} />
+                                <img src={user.photoURL ? user.photoURL : "/images/user.png"} alt="user photo" />
                                 :
                                 <i><RiAccountPinCircleFill /></i>
                             }
@@ -242,6 +244,7 @@ const UserButton = styled(motion.div)`
     align-items: center;
     flex-direction: row;
     cursor: pointer;
+    overflow: hidden;
 
     img {
         width: 2.5rem;

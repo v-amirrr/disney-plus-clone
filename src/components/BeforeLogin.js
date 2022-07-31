@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styled from 'styled-components';
 
+import { Link } from "react-router-dom";
+
 import Header from "./Header";
+
+import { setNewError } from "../redux/error/errorAction";
+import { useDispatch } from "react-redux";
 
 import { motion } from 'framer-motion';
 
@@ -24,7 +29,19 @@ const pageItemsVariants = {
     exit: { opacity: 0, y: 10, transition: { duration: 0.5, type: 'tween' } }
 };
 
+const popupVPN = sessionStorage.getItem("popupVPN");
+
 const BeforeLogin = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (!popupVPN) {
+            dispatch(setNewError("if you're in iran for better performance please use VPN."));
+            sessionStorage.setItem("popupVPN", true);
+        }
+    }, []);
+
     return (
         <>
             <Header />
@@ -32,12 +49,17 @@ const BeforeLogin = () => {
             <Page initial='hidden' animate='visible' exit='exit' variants={pageVariants}>
                 <Content variants={contentVariants}>
                     <TopLogo src="/images/cta-logo-one.svg" alt="Top Logo" variants={pageItemsVariants}/>
-                    <SingUpButton variants={pageItemsVariants} whileTap={{ scale: 0.9 }}>get all there</SingUpButton>
+
+                    <Link to="/signup">
+                        <SingUpButton variants={pageItemsVariants} whileTap={{ scale: 0.9 }}>get all there</SingUpButton>
+                    </Link>
+
                     <Description variants={pageItemsVariants}>
                         Get Premier Access to Raya and the Last Dragon for an additional fee
                         with a Disney+ subscription. As of 03/26/21, the price of Disney+
                         and The Disney Bundle will increase by $1.
                     </Description>
+                    
                     <BottomLogo src="/images/cta-logo-two.png" alt="Top Logo" variants={pageItemsVariants} />
                 </Content>
             </Page>

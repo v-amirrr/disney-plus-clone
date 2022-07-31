@@ -2,13 +2,15 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
+import { Link } from "react-router-dom";
+
 import styled from 'styled-components';
 
 import { motion } from 'framer-motion';
 
 const sectionVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { delay: 3, duration: 0.4, type: 'tween' } },
+    visible: { opacity: 1, transition: { delay: 1, duration: 0.4, type: 'tween' } },
     exit: { opacity: 0, transition: { duration: 0.4, type: 'tween' } }
 };
 
@@ -26,9 +28,11 @@ const Originals = () => {
                     <Items>
                         {
                             movies.map(movie => (
-                                <motion.div whileHover={{ scale: 1.1 }} key={movie.id}>
-                                    <img src={movie.cardImg} alt={movie.title} />
-                                </motion.div>
+                                <Link to={"/detail/" + movie.id}>
+                                    <motion.div whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }} key={movie.id}>
+                                        <img src={movie.cardImg} alt={movie.title} />
+                                    </motion.div>
+                                </Link>
                             ))
                         }
                     </Items>

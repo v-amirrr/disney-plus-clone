@@ -18,8 +18,10 @@ const useLogOut = () => {
             .then(res => {
                 dispatch(logout());
                 localStorage.clear();
-                navigate("/");
-                dispatch(loadingOff());
+                setTimeout(() => {                    
+                    navigate("/");
+                    dispatch(loadingOff());
+                }, 500);
             })
             .catch(err => {
                 dispatch(loadingOff());

@@ -34,7 +34,7 @@ const LogOutConfirmation = () => {
         <>
             <Page variants={pageVariants} initial='hidden' animate='visible' exit='exit'>
                 <Content variants={contentVariants}>
-                    <p>are you sure that you want to log out from your account, {user?.displayName}?</p>
+                    <p>are you sure that you want to log out from your account?</p>
                     <Buttons>
                         <motion.div className='green' onClick={() => navigate("/")} whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }}>go home</motion.div>
                         <motion.div className='red' onClick={logoutUser} whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }}>logout</motion.div>

@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 
 const sectionVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { delay: 3, duration: 0.4, type: 'tween' } },
+    visible: { opacity: 1, transition: { delay: 1, duration: 0.4, type: 'tween' } },
     exit: { opacity: 0, transition: { duration: 0.4, type: 'tween' } }
 };
 
@@ -29,7 +29,7 @@ const Recommends = () => {
                         {
                             movies.map(movie => (
                                 <Link to={"/detail/" + movie.id}>
-                                    <motion.div whileHover={{ scale: 1.1 }} key={movie.id}>
+                                    <motion.div whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }} key={movie.id}>
                                         <img src={movie.cardImg} alt={movie.title} />
                                     </motion.div>
                                 </Link>
