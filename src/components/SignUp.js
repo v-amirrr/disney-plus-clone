@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-import styled from 'styled-components';
-
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import useLogin from '../hooks/useLogin';
 import useSignUp from '../hooks/useSignUp';
@@ -10,6 +8,7 @@ import useSignUp from '../hooks/useSignUp';
 import { FcGoogle } from 'react-icons/fc';
 import { IoIosEye } from 'react-icons/io';
 
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const pageVariants = {
@@ -43,8 +42,13 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [confirmation, setConfirmation] = useState("");
 
+    const user = localStorage.getItem("user");
+
     return (
         <>
+        {
+            !user
+            ?
             <Page initial='hidden' animate='visible' exit='exit' variants={pageVariants}>
                 <Form variants={formItemsVariants}>
                     <FormHeader variants={formItemVariants}>sign up with your email</FormHeader>
@@ -82,6 +86,9 @@ const Login = () => {
                     </FormText>
                 </Form>
             </Page>
+            :
+            <Navigate replace to="/" />
+        }
         </>
     );
 };

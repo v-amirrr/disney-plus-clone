@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
 import HomePage from './components/HomePage';
 import Login from './components/Login';
@@ -27,6 +27,7 @@ const App = () => {
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/logout" element={<LogOutConfirmation />} />
                     <Route path="/detail/:id" element={<Detail />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
                 
             </AnimatePresence>

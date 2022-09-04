@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
-import styled from 'styled-components';
-
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import useLogin from '../hooks/useLogin';
 
 import { FcGoogle } from 'react-icons/fc';
 import { IoIosEye } from 'react-icons/io';
 
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const pageVariants = {
@@ -33,36 +32,43 @@ const Login = () => {
 
     const { loginWithGoogle, loginWithEmail } = useLogin();
 
-    const [passwordShow, setPasswordShow] = useState(false);
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordShow, setPasswordShow] = useState(false);
+
+    const user = localStorage.getItem("user");
 
     return (
         <>
-            <Page initial='hidden' animate='visible' exit='exit' variants={pageVariants}>
-                <Form variants={formItemsVariants}>
-                    <FormHeader variants={formItemVariants}>login with your email</FormHeader>
+            {
+                !user
+                ?
+                <Page initial='hidden' animate='visible' exit='exit' variants={pageVariants}>
+                    <Form variants={formItemsVariants}>
+                        <FormHeader variants={formItemVariants}>login with your email</FormHeader>
 
-                    <FormInputs variants={formItemVariants}>
-                        <FormInput><input variants={formItemVariants} type="email" placeholder='email' onChange={e => setEmail(e.target.value)} value={email} /></FormInput>
-                        <FormInput>
-                            <input variants={formItemVariants} type={passwordShow ? "text" : "password"} placeholder='password'  onChange={e => setPassword(e.target.value)} value={password} />
-                            <FormInputPassword passwordShow={passwordShow}>
-                                <input type="checkbox" onChange={() => setPasswordShow(!passwordShow)} value={passwordShow} />
-                                <span><IoIosEye /></span>
-                            </FormInputPassword>
-                        </FormInput>
-                    </FormInputs>
+                        <FormInputs variants={formItemVariants}>
+                            <FormInput><input variants={formItemVariants} type="email" placeholder='email' onChange={e => setEmail(e.target.value)} value={email} /></FormInput>
+                            <FormInput>
+                                <input variants={formItemVariants} type={passwordShow ? "text" : "password"} placeholder='password'  onChange={e => setPassword(e.target.value)} value={password} />
+                                <FormInputPassword passwordShow={passwordShow}>
+                                    <input type="checkbox" onChange={() => setPasswordShow(!passwordShow)} value={passwordShow} />
+                                    <span><IoIosEye /></span>
+                                </FormInputPassword>
+                            </FormInput>
+                        </FormInputs>
 
-                    <FormButton variants={formItemVariants} whileTap={{ scale: 0.9 }} onClick={() => loginWithEmail(email, password)}>login</FormButton>
-                    <FormGoogle variants={formItemVariants} whileTap={{ scale: 0.9 }} onClick={loginWithGoogle}><span><FcGoogle /></span>login with google</FormGoogle>
+                        <FormButton variants={formItemVariants} whileTap={{ scale: 0.9 }} onClick={() => loginWithEmail(email, password)}>login</FormButton>
+                        <FormGoogle variants={formItemVariants} whileTap={{ scale: 0.9 }} onClick={loginWithGoogle}><span><FcGoogle /></span>login with google</FormGoogle>
 
-                    <FormText variants={formItemVariants}>
-                        New To Disney+ ? <Link to="/signup" className='link'>Create An Account</Link>
-                    </FormText>
-                </Form>
-            </Page>
+                        <FormText variants={formItemVariants}>
+                            New To Disney+ ? <Link to="/signup" className='link'>Create An Account</Link>
+                        </FormText>
+                    </Form>
+                </Page>
+                :
+                <Navigate replace to="/" />
+            }
         </>
     );
 };

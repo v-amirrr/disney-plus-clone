@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import styled from 'styled-components';
-
-import { motion } from 'framer-motion';
-
-import { useSelector } from "react-redux";
-
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 import useLogOut from "../hooks/useLogOut";
+
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 const pageVariants = {
     hidden: { opacity: 0 },
@@ -28,19 +25,25 @@ const LogOutConfirmation = () => {
 
     const { logoutUser } = useLogOut();
 
-    const user = useSelector(state => state.userState.user);
+    const user = localStorage.getItem("user");
 
     return (
         <>
-            <Page variants={pageVariants} initial='hidden' animate='visible' exit='exit'>
-                <Content variants={contentVariants}>
-                    <p>are you sure that you want to log out from your account?</p>
-                    <Buttons>
-                        <motion.div className='green' onClick={() => navigate("/")} whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }}>go home</motion.div>
-                        <motion.div className='red' onClick={logoutUser} whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }}>logout</motion.div>
-                    </Buttons>
-                </Content>
-            </Page>
+            {
+                user
+                ?
+                <Page variants={pageVariants} initial='hidden' animate='visible' exit='exit'>
+                    <Content variants={contentVariants}>
+                        <p>are you sure that you want to log out from your account?</p>
+                        <Buttons>
+                            <motion.div className='green' onClick={() => navigate("/")} whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }}>go home</motion.div>
+                            <motion.div className='red' onClick={logoutUser} whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }}>logout</motion.div>
+                        </Buttons>
+                    </Content>
+                </Page>
+                :
+                <Navigate replace to="/" />
+            }
         </>
     );
 };
@@ -61,13 +64,29 @@ const Page = styled(motion.div)`
 `;
 
 const Content = styled(motion.div)`
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-    background-color: #ffffff13;
     padding: 2rem;
     border-radius: 4px;
     text-align: center;
-    text-transform: capitalize;
+    border: solid 2px #ffffff10;
+    background-color: #ffffff08;
+    box-shadow: #00000055 0px 5px 10px;
+    max-width: 40%;
+
+    @media (max-width: 1400px) {
+        max-width: 50%;
+    }
+
+    @media (max-width: 1200px) {
+        max-width: 60%;
+    }
+
+    @media (max-width: 1000px) {
+        max-width: 70%;
+    }
+
+    @media (max-width: 800px) {
+        max-width: 90%;
+    }
 `;
 
 const Buttons = styled(motion.div)`

@@ -29,15 +29,14 @@ const pageItemsVariants = {
     exit: { opacity: 0, y: 10, transition: { duration: 0.5, type: 'tween' } }
 };
 
-const popupVPN = sessionStorage.getItem("popupVPN");
-
 const BeforeLogin = () => {
-
+    
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
+        const popupVPN = sessionStorage.getItem("popupVPN");
         if (!popupVPN) {
-            dispatch(setNewError("if you're in iran for better performance please use VPN."));
+            dispatch(setNewError("if you're in countries like iran, syria, cuba and etc, you have to turn on your VPN for using the app."));
             sessionStorage.setItem("popupVPN", true);
         }
     }, []);

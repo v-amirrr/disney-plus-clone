@@ -2,6 +2,27 @@
     color-scheme: dark;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: .5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #ffffff00;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ffffff22;
+    border-radius: 50px;
+}
+
 @font-face {
     font-family: 'Avenir';
     src: local('Avenir Roman'), local('Avenir-Roman'),
