@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const pageVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.5, type: 'tween' } },
-    exit: { opacity: 0, transition: { duration: 0.5, type: 'tween' } }
+    exit: { opacity: 0, transition: { duration: 0.5, type: 'tween', when: "afterChildren" } }
 };
 
 const contentVariants = {

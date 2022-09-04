@@ -41,22 +41,21 @@ const userSettingVariants = {
 
 const Header = () => {
 
-    const user = useSelector(state => state.userState.user);
-
     const navigate = useNavigate();
 
+    const [userSetting, setUserSetting] = useState(false);
+
+    const user = useSelector(state => state.userState.user);
+
     const logout = () => {
-        setUSerSetting(false);
+        setUserSetting(false);
         navigate("/logout");
     };
-
-    const [userSetting, setUSerSetting] = useState(false);
 
     return (
         <>
             <Navbar initial='hidden' animate='visible' exit='exit' variants={navbarVariants}>
                 <Logo src='/images/logo.svg' alt="Header Logo" variants={logoVariants} />
-                
                 {
                     user 
                     &&
@@ -99,7 +98,7 @@ const Header = () => {
                     user
                     ?
                     <User>
-                        <UserButton whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} variants={logoVariants} onClick={() => setUSerSetting(!userSetting)}>
+                        <UserButton whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} variants={logoVariants} onClick={() => setUserSetting(!userSetting)}>
                             {
                                 user.photoURL
                                 ?
@@ -116,7 +115,7 @@ const Header = () => {
                                 <UserSetting variants={userSettingVariants} initial='hidden' animate='visible' exit='exit'>
                                     <div onClick={logout}>Log Out</div>
                                     <hr />
-                                    <div className='red' onClick={() => setUSerSetting(false)}>Close</div>
+                                    <div className='red' onClick={() => setUserSetting(false)}>Close</div>
                                 </UserSetting>
                             }
                         </AnimatePresence>
@@ -126,7 +125,6 @@ const Header = () => {
                         <LoginButton variants={logoVariants} whileTap={{ scale: 0.9 }}>login</LoginButton>
                     </Link>
                 }
-
             </Navbar>
         </>
     );
@@ -258,7 +256,7 @@ const UserSetting = styled(motion.div)`
     margin-top: .5rem;
     width: 100%;
     height: 4rem;
-    background-color: #555;
+    background-color: #222222aa;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -18,7 +18,7 @@ const pageVariants = {
 
 const formItemsVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.5, type: 'tween', staggerChildren: 0.2 } },
+    visible: { opacity: 1, transition: { duration: 0.5, type: 'tween', staggerChildren: 0.1 } },
     exit: { opacity: 0, transition: { duration: 0.5, type: 'tween' } }
 };
 
@@ -124,21 +124,20 @@ const FormInput = styled(motion.div)`
     input {
         all: unset;
         margin: .3rem 0;
-        background-color: #121212;
-        padding: .4rem;
+        background-color: #121212aa;
+        padding: .8rem;
         border-radius: 4px;
         text-align: left;
         width: 80%;
-        border: solid 2px #00000000;
         width: 100%;
-        transition: border-color .3s;
-
+        transition: background .3s;
+        
         &:focus {
-            border-color: #404040;
+            background-color: #121212;
         }
 
         &:not(:placeholder-shown) {
-            border-color: #404040;
+            background-color: #121212;
         }
     }
 `;
