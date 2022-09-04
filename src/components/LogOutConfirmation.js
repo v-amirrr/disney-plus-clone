@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { useNavigate, Navigate } from "react-router-dom";
-
 import useLogOut from "../hooks/useLogOut";
+
+import { useNavigate, Navigate } from "react-router-dom";
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';

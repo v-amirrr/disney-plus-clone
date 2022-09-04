@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 
-import styled from 'styled-components';
-
 import Header from './Header';
 import ImageSlider from './ImageSlider';
 import Companies from './Companies';
@@ -14,6 +12,7 @@ import useSetMovie from '../hooks/useSetMovie';
 
 import { useSelector } from 'react-redux';
 
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const pageVariants = {

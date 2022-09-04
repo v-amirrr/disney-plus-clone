@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 
-import styled from 'styled-components';
+import Header from "./Header";
 
 import { Link } from "react-router-dom";
-
-import Header from "./Header";
 
 import { setNewError } from "../redux/error/errorAction";
 import { useDispatch } from "react-redux";
 
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const pageVariants = {

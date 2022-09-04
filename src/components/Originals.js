@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
-
 import { Link } from "react-router-dom";
 
-import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const sectionVariants = {

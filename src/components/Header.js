@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 
-import styled from 'styled-components';
-
 import { Link, useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
 import { RiAccountPinCircleFill } from 'react-icons/ri';
 
+import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navbarVariants = {

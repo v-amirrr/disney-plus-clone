@@ -1,16 +1,15 @@
 import React from 'react';
 
-import { useParams } from 'react-router';
-
-import styled from 'styled-components';
-
 import Header from './Header';
+
+import { useParams } from 'react-router';
 
 import { useSelector } from 'react-redux';
 
 import { FaPlay } from 'react-icons/fa';
 import { TiGroup } from 'react-icons/ti';
 
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const pageVariants = {
